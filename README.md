@@ -32,3 +32,21 @@ But Angular doesn't use Shadow Dom (at least, not by default).  Angular simulate
 Please, change branch to demo/global-styles-in-angular to start our journey.
 
 
+## Global styles in angular.
+
+Inside the src folder you'll find the following structure:
+
+PASTE IMAGE HERE
+
+Our app consists of our app wrapper component and a child component called card.
+
+You'll see that the only css file available is found inside of the root folder (src).  Inside of this css file I added all of the styles and they work globally, the same way with any other regular web page.
+
+### The caveat
+
+But the difference here is that the styles.css file is not added to our html using the link tag as we would normally bind a stylesheet.  Instead, webpack injects a style tag in our head at runtime using css-loaders.
+
+PASTE IMAGE HERE
+
+
+
