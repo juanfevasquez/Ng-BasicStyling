@@ -65,7 +65,7 @@ header h1 {
   align-content: space-between;
 }
 
-/* .card {
+.card {
   width: 100%;
   max-width: 300px;
   padding: 5px;
@@ -124,4 +124,4 @@ header h1 {
 
 .cta--link:hover {
   background-color: darkgray;
-} */
+}

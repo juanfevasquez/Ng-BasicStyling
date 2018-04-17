@@ -44,7 +44,7 @@ You'll see that the only css file available is found inside of the root folder (
 
 ### The caveat
 
-But the difference here is that the styles.css file is not added to our html using the link tag as we would normally bind a stylesheet.  Instead, webpack injects a style tag in our head at runtime using css-loaders.
+When creating our build and deploying to production, the styles.css file is not added to our html using the link tag as we would normally bind a stylesheet.  Instead, the style tag is injected in our head at runtime.
 
 PASTE IMAGE HERE
 
