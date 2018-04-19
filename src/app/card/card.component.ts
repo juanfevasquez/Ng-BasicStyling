@@ -5,9 +5,11 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css'],
-  encapsulation: ViewEncapsulation.Native
+  // encapsulation: ViewEncapsulation.Native
 })
 export class CardComponent implements OnInit {
+
+  public text = 'View full details';
 
   constructor() { }
 
