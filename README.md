@@ -15,20 +15,35 @@ npm install
 
 Each example will live in its own branch.  Master will not hold any example so switch to the respective branch to see the demo.
 
-## The Basics of Css in Angular apps
+## Component scoped styles
 
-Angular has provided us with quite a lot of options to work with styles in our apps.  Before this we all were limited to adding our styles globally, meaning we had to use a link or several link tags in our page's head to load all of the different css files.  So for us it would be normal to have a link pointing to a responsive framework like Bootstrap or Foundation, then a link pointing to our own css files.  Also, from time to time we would find some inline styling and also styles added dynamically to our tags through javascript.
+In this branch we have our card component with its own css file.
 
-Now we are transitioning to a new way of doing things on the web.  This new way is called web components and with this comes new possibilities to work with our styles.
+PICTURE HERE
 
-Mind that one of the main philosophies of web components is encapsulation where a custom element has a scoped html, css and javascript.  This "scoped" html and css is what is called Shadow Dom.
+The styleUrls property of the @Component decorator lets Angular know that the card component will use its own style, or styles files.
 
-> I have another repo where I show a very basic custom element.  [Click here]() if you want to check it out.
+Here we have the css of our app on 2 different files.  One if for the global styles, the style.css file, and the other stylesheet is inside our card folder in card.component.css.  This last file holds the styles only for the card component.
 
-Using Shadow DOM, we can scope our styles to our custom elements, avoiding conflict with any global css declaration.  **This is the concept that Angular bases its component css architecture**
+If you run the app or run the build you'll see that 2 ```<style>``` tags are added in our head.  The first style holds the global css from style.css and the second one holds the card component's styles.
 
-But Angular doesn't use Shadow Dom (at least, not by default).  Angular simulates this behavior using something called ViewEncapsulation.  Before learning more about View Encapsulation though, we will learn other ways to work with css in our Angular apps that will result very familiar.
+PICTURE HERE
 
-Please, change branch to demo/global-styles-in-angular to start our journey.
+But there's something weird with our selectors in our second style tag.  You read .card[_ngcontent-c0] and all the other selectors have this weird atribute as well.
 
+### View Encapsulation
 
+What you're seeing is the way Angular mimics Shadow DOM to encapsulate the card css.  By default, every component that has its own css file will use the Emulated View Encapsulation.  Let's turn this default functionality off to see what happens.
+
+PICTURE HERE
+
+As you can see, we've added a property inside our card @Component decorator called encapsulation with a value of ViewEncapsulation.None.  To make this option work, you need to import the ViewEncapsulation module into your component.
+
+If you run ng serve or ng build again, you will notice the weird attribute selectors now disappear.
+
+PICTURE HERE
+
+View Encapsulation has 3 modes:
+* None: When you set View Encapsulation to None, your card styles are global, meaning they apply to the whole project.
+* Emulated: This mode tries to emulate Shadow DOM, using attribute selectors to scope our styles.  Remember, this is the default option AND this is not real Shadow DOM, just a browser friendly way to scope our styles.
+* Native: This is the real deal, when using Native we are enabling Shadow DOM.  The downside of this is browsers that don't support Shadow DOM go kaput.
