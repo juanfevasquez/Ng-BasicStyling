@@ -65,3 +65,11 @@
     padding: 5px;
   }
 
+  /* 
+  Changing the cta color from the card component using shadow piercing selectors 
+  Remember, this is a feature that will be deprecated soon
+  */
+
+  :host ::ng-deep a.cta {
+    background-color: yellowgreen;
+  }
